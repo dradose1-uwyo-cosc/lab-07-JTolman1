@@ -1,13 +1,10 @@
-# Your Name Here
+# Jared Tolman
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
-# your
-# comments
-# here
-
+# Oct 30th, 2024
+# Lab 07
+# Lab Section: 15
+# Sources, people worked with, help given to: Some Google searches were made on function and syntax information.
+#
 
 # Prompt the user for an upper bound 
 # Write a while loop that gives the factorial of that upper bound
@@ -17,7 +14,18 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
+integer=input(f"Please input a value for a factorial: ")
+if integer.isdigit()==False or int(integer) <= 0:
+    print("Please enter a positive whole number")
+    integer=input(f"Please input a value for a factorial: ")
+
+integer=int(integer)
+
 factorial = 1
+
+while integer > 1:
+    factorial*=integer
+    integer-=1
 
 print(f"The result of the factorial based on the given bound is {factorial}")
 
@@ -37,7 +45,21 @@ print("*"*75)
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
 
-num_sum = 0 
+sumvalues=[0]
+state=True
+while state == True:
+    integer2=input(f"Please input an integer value to sum. When finished, type 'exit': ")
+    if integer2.lower() == "exit":
+        state=False
+    elif integer2.replace("-","").isdigit() != True:
+        print(f"Unsupported value")
+        integer2=input(f"Please input an integer value to sum: ")
+    else:
+        integer2=int(integer2)
+        sumvalues.append(integer2)
+
+
+num_sum = sum(sumvalues)
 
 print(f"Your final sum is {num_sum}")
 
@@ -59,4 +81,22 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+state2=True
+while state2==True:
+    calc=input(f"Please type a simple math expression. When finished, type 'exit': ")
+    calc=calc.replace(" ","")
+    if calc.lower() == "exit":
+        state2=False
+    elif "+" in calc:
+        clist=calc.split("+")
+        ans=int(clist[0])+int(clist[1])
+    elif "-" in calc:
+        clist=calc.split("-")
+        ans=int(clist[0])-int(clist[1])
+    elif "*" in calc:
+        clist=calc.split("*")
+        ans=int(clist[0])*int(clist[1])
+    elif "/" in calc:
+        clist=calc.split("/")
+        ans=int(clist[0])/int(clist[1])
+    print(f"Answer = {ans}")
